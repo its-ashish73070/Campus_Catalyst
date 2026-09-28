@@ -43,6 +43,15 @@ All event content lives in **`src/data/event.ts`**.
 Real photographs go in **`src/assets/photos/`**. See `src/assets/photos/README.md` for the full list of filenames and a generation prompt for each.
 Until a file is added, that slot shows an illustrated vintage placeholder (`src/components/Scene.tsx`).
 
+## Background music
+
+The track at **`public/audio/campus-catalyst-theme.mp3`** is an original 65-second 80s Indian disco loop composed for this site, so there are no licensing issues. It runs at 118 BPM in A minor, with a disco octave bass, a synth arpeggio, a synth lead with slides, brass stabs and a tabla break, finished with tape saturation and vinyl crackle. The generator script is `tools/music/compose_theme.py` (needs numpy); the reverb and mastering are done afterwards with ffmpeg. To use a different track, replace the file and keep the same name. If the file is missing, the floating music button hides itself.
+
+- It plays at volume 0.15, fading in over about 2.4s and out over about 0.9s. To change these, edit `src/utils/music.ts`.
+- It tries to start as soon as the page opens. Browsers often block sound for first-time visitors; in that case it starts on the first click, tap or key press, including one made during the intro. It won't start if they turned it off earlier; that choice is saved in `localStorage` as `cc-music`.
+- The music pauses while the tab is hidden and resumes when the visitor comes back.
+- For a seamless loop, export the MP3 with no silence at the start or end. A 1–3 minute track at 96–128 kbps keeps the file small.
+
 ## Project structure
 
 ```

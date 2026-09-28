@@ -3,6 +3,7 @@ import { ScrollTrigger } from './animations/gsap'
 import { Cursor } from './components/Cursor'
 import { Intro } from './components/Intro'
 import { Marquee } from './components/Marquee'
+import { MusicControl } from './components/MusicControl'
 import { Nav } from './components/Nav'
 import { Toast } from './components/Toast'
 import { EVENT } from './data/event'
@@ -78,6 +79,7 @@ export default function App() {
       <div className="grain-layer" aria-hidden="true" />
       <div className="vignette-layer" aria-hidden="true" />
       <Cursor />
+      <MusicControl />
       <Toast />
     </>
   )
