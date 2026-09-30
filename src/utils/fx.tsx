@@ -36,7 +36,11 @@ export function FxProvider({ children }: { children: ReactNode }) {
   const [reduced, setReduced] = useState(() => mq('(prefers-reduced-motion: reduce)').matches)
   const [desktop, setDesktop] = useState(() => mq('(pointer: fine) and (min-width: 1024px)').matches)
   const [userFx, setUserFx] = useState<string | null>(() => safeGet('cc-fx'))
-  const [sound, setSound] = useState(false)
+  const [sound, setSound] = useState(true)
+
+  useEffect(() => {
+    setSoundEnabled(true)
+  }, [])
 
   useEffect(() => {
     const a = mq('(prefers-reduced-motion: reduce)')

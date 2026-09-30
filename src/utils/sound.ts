@@ -15,6 +15,7 @@ export function setSoundEnabled(on: boolean) {
 
 function noiseBurst(duration: number, gain: number, freq: number, q = 1, delay = 0) {
   if (!ctx) return
+  if (ctx.state === 'suspended') void ctx.resume()
   const t = ctx.currentTime + delay
   const len = Math.ceil(ctx.sampleRate * duration)
   const buf = ctx.createBuffer(1, len, ctx.sampleRate)

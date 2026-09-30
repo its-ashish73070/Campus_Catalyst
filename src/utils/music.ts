@@ -134,7 +134,7 @@ async function pause(fade = true) {
 
 /** Button handler. */
 export function toggleMusic() {
-  if (state.status === 'playing') {
+  if (state.enabled) {
     safeSet(PREF_KEY, 'off')
     emit({ enabled: false })
     void pause()
@@ -194,7 +194,12 @@ async function trackExists() {
 export function initMusic() {
   if (initialised || typeof window === 'undefined') return
   initialised = true
-  emit({ enabled: safeGet(PREF_KEY) !== 'off' })
+
+  // Default music to on when the page loads, even if a previous visit stored the
+  // toggle as off. The user can still switch it off afterwards from the control.
+  if (safeGet(PREF_KEY) === 'off') safeSet(PREF_KEY, 'on')
+  emit({ enabled: true })
+
   // listen for the first gesture right away — a click during the intro counts
   GESTURES.forEach((t) => window.addEventListener(t, onFirstGesture, { capture: true, passive: true }))
   document.addEventListener('visibilitychange', onVisibility)

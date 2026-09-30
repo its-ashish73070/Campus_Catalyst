@@ -1,5 +1,5 @@
 import { RegisterButton } from '../components/Button'
-import { EVENT, isRegistrationOpen } from '../data/event'
+import { EVENT } from '../data/event'
 
 export function Register() {
   return (
@@ -19,7 +19,6 @@ export function Register() {
         <RegisterButton size="xl" className="register__btn">
           Register on Unstop
         </RegisterButton>
-        {!isRegistrationOpen() && <p className="register__soon t-type">Registration link goes live soon on Unstop.</p>}
         <p className="register__when t-type">
           <span>{EVENT.dateLabel}</span>
           <span aria-hidden="true">✶</span>
